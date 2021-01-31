@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+option go_package = "grpc";
+
+service CommNodeWorker {
+  rpc StartServer(StartRequest) returns (stream ServerEvent) {}
+}
+
+// The request message containing the user's name.
+message StartRequest { string name = 1; }
+
+// The response message containing the greetings
+message ServerEvent {
+  enum EventType {
+    ContainerImagePull = 0;
+    ContainerStart = 1;
+    SettingUpServer = 2;
+    ServerReady = 3;
+  }
+
+  EventType type = 1;
+
+  string message = 2;
+}
