@@ -7,15 +7,16 @@ service CommNodeWorker {
 }
 
 // The request message containing the user's name.
-message StartRequest { string name = 1; }
+message StartRequest {string name = 1;}
 
 // The response message containing the greetings
 message ServerEvent {
   enum EventType {
-    ContainerImagePull = 0;
-    ContainerStart = 1;
-    SettingUpServer = 2;
-    ServerReady = 3;
+    Invalid = 0;
+    ContainerImagePull = 1;
+    ContainerStart = 2;
+    SettingUpServer = 3;
+    ServerReady = 4;
   }
 
   EventType type = 1;
