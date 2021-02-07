@@ -89,7 +89,7 @@ func (s *Server) ManageServer(container *docker.ServerContainer, serverApi *fsoA
 			// Stop the management coroutine
 			log.Printf("Container exited with code %v", exitCode)
 			break
-		case <-time.After(5 * time.Second):
+		case <-time.After(30 * time.Second):
 			if !s.checkPlayerCount() {
 				break
 			}
