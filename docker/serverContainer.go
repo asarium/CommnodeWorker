@@ -134,13 +134,13 @@ func (s *ServerContainer) Start(ctx context.Context, progressCb ContainerProgres
 		return err
 	}
 
-	//closer, err := s.dockerClient.ImagePull(ctx, s.imageName, types.ImagePullOptions{})
-	//if err != nil {
-	//	return err
-	//}
-	//if err = readDockerReader(closer); err != nil {
-	//	return err
-	//}
+	closer, err := s.dockerClient.ImagePull(ctx, s.imageName, types.ImagePullOptions{})
+	if err != nil {
+		return err
+	}
+	if err = readDockerReader(closer); err != nil {
+		return err
+	}
 
 	if err := progressCb(ProgressStarting, s.imageName); err != nil {
 		return err
